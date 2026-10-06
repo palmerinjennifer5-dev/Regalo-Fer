@@ -1,0 +1,3045 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Regalo para mi amado Fer 💙</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef7fc,
+            #dcecf6
+        );
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px;
+
+    color: #304a5a;
+}
+
+
+.container {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(49,91,120,0.12);
+
+    text-align: center;
+}
+
+
+h1 {
+
+    margin-top: 0;
+
+    color: #315b78;
+}
+
+
+p {
+
+    line-height: 1.6;
+}
+
+
+.heart {
+
+    font-size: 55px;
+
+    margin-bottom: 10px;
+}
+
+
+input[type="file"] {
+
+    display: none;
+}
+
+
+.select-button,
+.generate-button {
+
+    display: inline-block;
+
+    padding: 15px 25px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    margin: 10px;
+
+    transition: 0.3s;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.select-button {
+
+    background: #d7eaf5;
+
+    color: #315b78;
+}
+
+
+.generate-button {
+
+    background: #315b78;
+
+    color: white;
+}
+
+
+.select-button:hover,
+.generate-button:hover {
+
+    transform: translateY(-2px);
+
+    opacity: 0.9;
+}
+
+
+.select-button:active,
+.generate-button:active {
+
+    transform: scale(0.97);
+}
+
+
+#contador {
+
+    margin-top: 15px;
+
+    font-weight: bold;
+
+    color: #4f82a3;
+}
+
+
+#mensaje {
+
+    margin-top: 20px;
+
+    font-size: 14px;
+}
+
+
+.nota {
+
+    margin-top: 25px;
+
+    font-size: 13px;
+
+    color: #777;
+}
+
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding: 15px;
+
+    }
+
+    .container {
+
+        padding: 30px 20px;
+
+    }
+
+    h1 {
+
+        font-size: 28px;
+
+    }
+
+    .select-button,
+    .generate-button {
+
+        width: 100%;
+
+        margin: 8px 0;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+    <div class="heart">
+        🤍
+    </div>
+
+    <h1>
+        Generador de tu regalo
+    </h1>
+
+    <p>
+
+        Selecciona las fotos que quieres incluir en
+
+        <strong>
+            “Nuestra primera y segunda temporada”
+        </strong>.
+
+    </p>
+
+
+    <label
+        for="fotos"
+        class="select-button"
+    >
+
+        📷 Seleccionar fotos
+
+    </label>
+
+
+    <input
+        type="file"
+        id="fotos"
+        accept="image/*"
+        multiple
+    >
+
+
+    <div id="contador">
+
+        No has seleccionado fotos todavía.
+
+    </div>
+
+
+    <button
+        type="button"
+        class="generate-button"
+        id="crearRegaloBtn"
+    >
+
+        💌 Crear mi regalo
+
+    </button>
+
+
+    <div id="mensaje"></div>
+
+</div>
+
+
+
+<!-- =====================================================
+     PLANTILLA DEL REGALO
+===================================================== -->
+
+<textarea
+    id="plantilla"
+    style="display:none;"
+>
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Para Fernando 💙</title>
+
+
+<style>
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+    -webkit-text-size-adjust: 100%;
+}
+
+
+body {
+
+    font-family:
+        Georgia,
+        'Times New Roman',
+        serif;
+
+    background: #f8fcff;
+
+    color: #304a5a;
+
+    overflow-x: hidden;
+
+    width: 100%;
+}
+
+
+/* =========================
+   PANTALLA DE CONTRASEÑA
+========================= */
+
+#pantallaPassword {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    min-height: 100svh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dcecf6,
+            #eef7fc,
+            #d7eaf5
+        );
+
+    z-index: 99999;
+
+    text-align: center;
+}
+
+
+.password-box {
+
+    width: 100%;
+
+    max-width: 420px;
+
+    background: white;
+
+    padding: 40px 30px;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(49,91,120,0.15);
+}
+
+
+.password-heart {
+
+    font-size: 55px;
+
+    margin-bottom: 15px;
+}
+
+
+.password-box h1 {
+
+    color: #315b78;
+
+    font-size: 30px;
+
+    margin-bottom: 15px;
+}
+
+
+.password-box p {
+
+    color: #526b7a;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+
+#passwordInput {
+
+    width: 100%;
+
+    padding: 14px 18px;
+
+    border: 2px solid #d7eaf5;
+
+    border-radius: 25px;
+
+    outline: none;
+
+    font-size: 16px;
+
+    text-align: center;
+
+    color: #315b78;
+
+    margin-bottom: 15px;
+}
+
+
+#passwordInput:focus {
+
+    border-color: #4f82a3;
+}
+
+
+#entrarPassword {
+
+    width: 100%;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: #315b78;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    touch-action: manipulation;
+}
+
+
+#entrarPassword:hover {
+
+    background: #4f82a3;
+
+    transform: translateY(-2px);
+}
+
+
+#entrarPassword:active {
+
+    transform: scale(0.97);
+}
+
+
+#errorPassword {
+
+    color: #315b78;
+
+    font-size: 14px;
+
+    margin-top: 15px;
+
+    min-height: 20px;
+}
+
+
+#contenidoRegalo {
+
+    display: none;
+}
+
+
+
+/* =========================
+   PORTADA
+========================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    min-height: 100svh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    background:
+        linear-gradient(
+            rgba(234,244,251,0.92),
+            rgba(248,252,255,0.97)
+        );
+
+    position: relative;
+}
+
+
+.hero h1 {
+
+    font-size:
+        clamp(
+            40px,
+            8vw,
+            75px
+        );
+
+    color: #315b78;
+
+    margin-bottom: 20px;
+}
+
+
+.hero p {
+
+    font-size: 22px;
+
+    max-width: 650px;
+
+    line-height: 1.6;
+
+    color: #496b80;
+}
+
+
+.hero-heart {
+
+    font-size: 65px;
+
+    margin-bottom: 20px;
+
+    animation:
+        latido 1.8s infinite;
+}
+
+
+@keyframes latido {
+
+    0% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.12);
+
+    }
+
+    100% {
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+.enter-button {
+
+    margin-top: 40px;
+
+    padding: 15px 30px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #315b78;
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    box-shadow:
+        0 8px 20px
+        rgba(49,91,120,0.18);
+
+    -webkit-tap-highlight-color: transparent;
+
+    touch-action: manipulation;
+}
+
+
+.enter-button:hover {
+
+    transform: translateY(-3px);
+
+    background: #4f82a3;
+}
+
+
+.enter-button:active {
+
+    transform: scale(0.97);
+}
+
+
+
+/* =========================
+   SECCIONES
+========================= */
+
+section {
+
+    padding: 90px 20px;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+.section-title {
+
+    text-align: center;
+
+    font-size: 38px;
+
+    color: #315b78;
+
+    margin-bottom: 45px;
+}
+
+
+.letter {
+
+    font-size: 19px;
+
+    line-height: 2;
+
+    max-width: 750px;
+
+    margin: auto;
+
+    text-align: center;
+
+    color: #3f5969;
+}
+
+
+
+/* =========================
+   CARRUSEL
+========================= */
+
+.carousel-container {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 800px;
+
+    margin: auto;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 35px
+        rgba(49,91,120,0.15);
+
+    background: white;
+
+    touch-action: pan-y;
+}
+
+
+.carousel-track {
+
+    display: flex;
+
+    transition:
+        transform 0.45s ease;
+
+    width: 100%;
+
+    will-change: transform;
+}
+
+
+.carousel-slide {
+
+    min-width: 100%;
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    position: relative;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+}
+
+
+.carousel-slide img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    background: white;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    pointer-events: none;
+}
+
+
+.carousel-caption {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    right: 0;
+
+    padding: 25px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(25,58,82,0.82)
+        );
+
+    font-size: 18px;
+
+    text-align: center;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+
+/* =========================
+   FLECHAS
+========================= */
+
+.carousel-button {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    width: 48px;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.93);
+
+    color: #315b78;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    box-shadow:
+        0 4px 12px
+        rgba(49,91,120,0.20);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    -webkit-tap-highlight-color: transparent;
+
+    touch-action: manipulation;
+}
+
+
+.carousel-button:hover {
+
+    background: white;
+
+    color: #4f82a3;
+}
+
+
+.carousel-button:active {
+
+    transform:
+        translateY(-50%)
+        scale(0.92);
+}
+
+
+.prev {
+
+    left: 12px;
+}
+
+
+.next {
+
+    right: 12px;
+}
+
+
+
+/* =========================
+   INDICADORES
+========================= */
+
+.dots {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    flex-wrap: wrap;
+
+    padding: 0 10px;
+}
+
+
+.dot {
+
+    width: 11px;
+
+    height: 11px;
+
+    border-radius: 50%;
+
+    background: #a9c9dc;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    border: none;
+
+    padding: 0;
+
+    flex-shrink: 0;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.dot.active {
+
+    background: #315b78;
+
+    transform: scale(1.25);
+}
+
+
+
+/* =========================
+   ADMIRACIÓN
+========================= */
+
+.admiration {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+
+    gap: 25px;
+}
+
+
+.card {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 25px
+        rgba(49,91,120,0.08);
+
+    border:
+        1px solid #e3f0f7;
+}
+
+
+.card span {
+
+    font-size: 40px;
+
+    display: block;
+
+    margin-bottom: 15px;
+}
+
+
+.card h3 {
+
+    color: #4f82a3;
+
+    margin-bottom: 10px;
+}
+
+
+.card p {
+
+    line-height: 1.6;
+
+    color: #526b7a;
+}
+
+
+
+/* =========================
+   SORPRESAS
+========================= */
+
+.surprise {
+
+    text-align: center;
+}
+
+
+.surprise-button {
+
+    border: none;
+
+    padding: 15px 25px;
+
+    margin: 8px;
+
+    border-radius: 30px;
+
+    background: #d7eaf5;
+
+    color: #315b78;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+
+    -webkit-tap-highlight-color: transparent;
+
+    touch-action: manipulation;
+}
+
+
+.surprise-button:hover {
+
+    transform: translateY(-2px);
+
+    background: #bfdceb;
+}
+
+
+.surprise-button:active {
+
+    transform: scale(0.96);
+}
+
+
+.surprise-message {
+
+    display: none;
+
+    margin: 25px auto;
+
+    max-width: 650px;
+
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    line-height: 1.7;
+
+    box-shadow:
+        0 10px 25px
+        rgba(49,91,120,0.10);
+
+    border:
+        1px solid #e3f0f7;
+
+    color: #3f5969;
+}
+
+
+
+/* =========================
+   FINAL
+========================= */
+
+.final {
+
+    min-height: 80vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+.final h2 {
+
+    font-size:
+        clamp(
+            35px,
+            7vw,
+            60px
+        );
+
+    color: #315b78;
+
+    margin-bottom: 25px;
+}
+
+
+.final p {
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    max-width: 700px;
+
+    color: #496b80;
+}
+
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    section {
+
+        padding:
+            65px 18px;
+    }
+
+
+    .hero {
+
+        padding:
+            25px 18px;
+    }
+
+
+    .hero h1 {
+
+        font-size: 42px;
+
+        line-height: 1.15;
+    }
+
+
+    .hero p {
+
+        font-size: 18px;
+    }
+
+
+    .hero-heart {
+
+        font-size: 55px;
+    }
+
+
+    .section-title {
+
+        font-size: 30px;
+
+        line-height: 1.25;
+    }
+
+
+    .letter {
+
+        font-size: 17px;
+
+        line-height: 1.85;
+    }
+
+
+    .carousel-container {
+
+        border-radius: 18px;
+    }
+
+
+    .carousel-caption {
+
+        font-size: 14px;
+
+        padding:
+            25px 50px 18px;
+    }
+
+
+    .carousel-button {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 24px;
+    }
+
+
+    .prev {
+
+        left: 8px;
+    }
+
+
+    .next {
+
+        right: 8px;
+    }
+
+
+    .card {
+
+        padding: 25px;
+    }
+
+
+    .surprise-button {
+
+        width: 90%;
+
+        max-width: 300px;
+
+        margin:
+            6px auto;
+
+        display: block;
+    }
+
+
+    .final {
+
+        padding:
+            60px 20px;
+    }
+
+
+    .final p {
+
+        font-size: 18px;
+    }
+
+
+    .password-box {
+
+        padding:
+            35px 22px;
+    }
+
+
+    .password-box h1 {
+
+        font-size: 27px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     PANTALLA DE CONTRASEÑA
+========================= -->
+
+<div id="pantallaPassword">
+
+    <div class="password-box">
+
+        <div class="password-heart">
+            💙
+        </div>
+
+        <h1>
+            Este regalo es solo para ti
+        </h1>
+
+        <p>
+
+            Hay algo que preparé
+            especialmente para ti, amor. 🤍
+
+            <br><br>
+
+            Escribe la contraseña para entrar.
+
+        </p>
+
+
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="Contraseña"
+            autocomplete="off"
+        >
+
+
+        <button
+            type="button"
+            id="entrarPassword"
+        >
+
+            Entrar 💙
+
+        </button>
+
+
+        <div id="errorPassword"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     CONTENIDO DEL REGALO
+========================= -->
+
+<div id="contenidoRegalo">
+
+
+<!-- =========================
+     PORTADA
+========================= -->
+
+<div
+    class="hero"
+    id="inicio"
+>
+
+    <div class="hero-heart">
+
+        🤍
+
+    </div>
+
+
+    <h1>
+
+        Para el novio más precioso
+
+    </h1>
+
+
+    <p>
+
+        Un mes más juntos
+
+    </p>
+
+
+    <button
+        type="button"
+        class="enter-button"
+        id="entrarBtn"
+    >
+
+        Entra aquí →
+
+    </button>
+
+
+</div>
+
+
+
+<!-- =========================
+     CARTA
+========================= -->
+
+<section id="carta">
+
+
+    <h2 class="section-title">
+
+        Para ti, amor mío 🤍
+
+    </h2>
+
+
+    <div class="letter">
+
+
+        <p>
+
+            Hace meses comenzamos este camino juntos,
+            aunque haya sido por temporadas,
+            nuestro vínculo se ha fortalecido mucho,
+            para mí ha sido suficiente
+            para guardar muchos momentos que quiero conservar.
+
+        </p>
+
+
+        <br>
+
+
+        <p>
+
+            Hoy quiero celebrar este mes contigo
+            y agradecerte por cada momento,
+            cada conversación, cada risa
+            y cada idea loca que hemos compartido.
+
+        </p>
+
+
+        <br>
+
+
+        <p>
+
+            Me gusta estar contigo,
+            admiro la persona que eres.
+            Pero tengo un secreto...
+            aún guardo las fotos de la temporada 1,
+            no me animé a borrarlas.
+
+        </p>
+
+
+        <br>
+
+
+        <p>
+
+            Gracias a nuestro Padre y a ti amor.
+
+        </p>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOTOS
+========================= -->
+
+<section>
+
+
+    <h2 class="section-title">
+
+        Nuestra primera y segunda temporada 🤍
+
+    </h2>
+
+
+    <div class="carousel-container">
+
+
+        <div
+            class="carousel-track"
+            id="carouselTrack"
+        >
+
+            <!-- FOTOS_AQUI -->
+
+        </div>
+
+
+        <button
+            type="button"
+            class="carousel-button prev"
+            id="prevBtn"
+            aria-label="Foto anterior"
+        >
+
+            ‹
+
+        </button>
+
+
+        <button
+            type="button"
+            class="carousel-button next"
+            id="nextBtn"
+            aria-label="Foto siguiente"
+        >
+
+            ›
+
+        </button>
+
+
+    </div>
+
+
+    <div
+        class="dots"
+        id="dots"
+    ></div>
+
+
+</section>
+
+
+
+<!-- =========================
+     LO QUE ADMIRO DE TI
+========================= -->
+
+<section>
+
+
+    <h2 class="section-title">
+
+        Lo que admiro de ti 🤍
+
+    </h2>
+
+
+    <div class="admiration">
+
+
+        <div class="card">
+
+            <span>
+                🤍
+            </span>
+
+            <h3>
+
+                Tu autenticidad
+
+            </h3>
+
+            <p>
+
+                Me gusta que seas tú mismo,
+                que no tengas que esconder quién eres
+                y que hagas las cosas desde el corazón.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <span>
+                🌱
+            </span>
+
+            <h3>
+
+                Tu forma de crecer
+
+            </h3>
+
+            <p>
+
+                Admiro que quieras mejorar,
+                aprender y seguir construyéndote.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <span>
+                🫶🏻
+            </span>
+
+            <h3>
+
+                Tu manera de querer
+
+            </h3>
+
+            <p>
+
+                Valoro los detalles,
+                las conversaciones,
+                tu forma de escuchar
+                y los momentos que compartimos.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <span>
+                ✨
+            </span>
+
+            <h3>
+
+                La persona que eres
+
+            </h3>
+
+            <p>
+
+                Hay muchas cosas de ti que admiro
+                demasiado.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     SORPRESAS
+========================= -->
+
+<section class="surprise">
+
+
+    <h2 class="section-title">
+
+        Una pequeña sorpresa 🤍
+
+    </h2>
+
+
+    <button
+        type="button"
+        class="surprise-button"
+        data-mensaje="mensaje1"
+    >
+
+        💌 Ábreme
+
+    </button>
+
+
+    <button
+        type="button"
+        class="surprise-button"
+        data-mensaje="mensaje2"
+    >
+
+        🫶🏻 Otro
+
+    </button>
+
+
+    <button
+        type="button"
+        class="surprise-button"
+        data-mensaje="mensaje3"
+    >
+
+        ✨ Uno más
+
+    </button>
+
+
+
+    <div
+        class="surprise-message"
+        id="mensaje1"
+    >
+
+        Si pudiera volver al momento en que
+        comenzamos este camino,
+        volvería a elegirte.
+        🤍
+
+    </div>
+
+
+
+    <div
+        class="surprise-message"
+        id="mensaje2"
+    >
+
+        ¿Recuerdas nuestra primer salida lejana...?
+
+        <br><br>
+
+        Fue cuando vi por primera vez tus pompis
+        y te inyecté.
+
+    </div>
+
+
+
+    <div
+        class="surprise-message"
+        id="mensaje3"
+    >
+
+        Todavía nos quedan muchísimas historias,
+        fotografías, risas y momentos por guardar.
+
+        ✨
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section class="final">
+
+
+    <div class="hero-heart">
+
+        🤍
+
+    </div>
+
+
+    <h2>
+
+        Gracias por este bello mes junto a ti amor.
+
+    </h2>
+
+
+    <p>
+
+        Gracias por permitirme ser tu novia.
+
+        <br><br>
+
+        Espero que este pequeño regalo
+        te recuerde lo mucho que significan
+        para mí nuestros momentos.
+
+        <br><br>
+
+        Caminemos juntos sosteniéndonos de la mano del Padre.
+
+        <br><br>
+
+        Te amo Fer! 🤍
+
+    </p>
+
+
+</section>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   CONTRASEÑA
+===================================================== */
+
+const PASSWORD_CORRECTA = "Ferch#05";
+
+
+const pantallaPassword =
+    document.getElementById(
+        "pantallaPassword"
+    );
+
+
+const passwordInput =
+    document.getElementById(
+        "passwordInput"
+    );
+
+
+const entrarPassword =
+    document.getElementById(
+        "entrarPassword"
+    );
+
+
+const errorPassword =
+    document.getElementById(
+        "errorPassword"
+    );
+
+
+const contenidoRegalo =
+    document.getElementById(
+        "contenidoRegalo"
+    );
+
+
+function comprobarPassword() {
+
+    const password =
+        passwordInput.value.trim();
+
+
+    if (
+        password === PASSWORD_CORRECTA
+    ) {
+
+        pantallaPassword.style.display =
+            "none";
+
+        contenidoRegalo.style.display =
+            "block";
+
+        document.body.style.overflow =
+            "auto";
+
+    }
+
+    else {
+
+        errorPassword.textContent =
+            "Mmm... esa no es 🤭💙";
+
+        passwordInput.value = "";
+
+        passwordInput.focus();
+
+    }
+
+}
+
+
+entrarPassword.addEventListener(
+    "click",
+    comprobarPassword
+);
+
+
+passwordInput.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            comprobarPassword();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   CARRUSEL
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+
+        let indiceActual = 0;
+
+
+        const track =
+            document.getElementById(
+                "carouselTrack"
+            );
+
+
+        const dotsContainer =
+            document.getElementById(
+                "dots"
+            );
+
+
+        const prevBtn =
+            document.getElementById(
+                "prevBtn"
+            );
+
+
+        const nextBtn =
+            document.getElementById(
+                "nextBtn"
+            );
+
+
+        let slides =
+            document.querySelectorAll(
+                ".carousel-slide"
+            );
+
+
+
+        function actualizarCarrusel() {
+
+            slides =
+                document.querySelectorAll(
+                    ".carousel-slide"
+                );
+
+
+            if (
+                !track ||
+                slides.length === 0
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                indiceActual >=
+                slides.length
+            ) {
+
+                indiceActual = 0;
+
+            }
+
+
+            if (
+                indiceActual < 0
+            ) {
+
+                indiceActual =
+                    slides.length - 1;
+
+            }
+
+
+            track.style.transform =
+                "translate3d(-" +
+                (
+                    indiceActual * 100
+                ) +
+                "%, 0, 0)";
+
+
+            const dots =
+                document.querySelectorAll(
+                    ".dot"
+                );
+
+
+            dots.forEach(
+                function(dot, index) {
+
+                    dot.classList.toggle(
+                        "active",
+                        index === indiceActual
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        function moverCarrusel(
+            direccion
+        ) {
+
+            if (
+                slides.length === 0
+            ) {
+
+                return;
+
+            }
+
+
+            indiceActual +=
+                direccion;
+
+
+            if (
+                indiceActual >=
+                slides.length
+            ) {
+
+                indiceActual = 0;
+
+            }
+
+
+            if (
+                indiceActual < 0
+            ) {
+
+                indiceActual =
+                    slides.length - 1;
+
+            }
+
+
+            actualizarCarrusel();
+
+        }
+
+
+
+        function crearDots() {
+
+            if (!dotsContainer) {
+
+                return;
+
+            }
+
+
+            dotsContainer.innerHTML =
+                "";
+
+
+            slides =
+                document.querySelectorAll(
+                    ".carousel-slide"
+                );
+
+
+            slides.forEach(
+                function(
+                    slide,
+                    index
+                ) {
+
+
+                    const dot =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    dot.type =
+                        "button";
+
+
+                    dot.className =
+                        "dot";
+
+
+                    dot.setAttribute(
+                        "aria-label",
+                        "Ir a la foto " +
+                        (
+                            index + 1
+                        )
+                    );
+
+
+                    if (
+                        index === 0
+                    ) {
+
+                        dot.classList.add(
+                            "active"
+                        );
+
+                    }
+
+
+                    dot.addEventListener(
+                        "click",
+                        function() {
+
+                            indiceActual =
+                                index;
+
+                            actualizarCarrusel();
+
+                        }
+                    );
+
+
+                    dotsContainer.appendChild(
+                        dot
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        if (prevBtn) {
+
+            prevBtn.addEventListener(
+                "click",
+                function(event) {
+
+                    event.preventDefault();
+
+                    moverCarrusel(-1);
+
+                }
+            );
+
+        }
+
+
+
+        if (nextBtn) {
+
+            nextBtn.addEventListener(
+                "click",
+                function(event) {
+
+                    event.preventDefault();
+
+                    moverCarrusel(1);
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================
+           SWIPE
+        ========================= */
+
+        let inicioX = 0;
+
+        let inicioY = 0;
+
+        let moviendo = false;
+
+
+        if (track) {
+
+            track.addEventListener(
+                "touchstart",
+                function(event) {
+
+                    if (
+                        event.touches.length !== 1
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    inicioX =
+                        event.touches[0].clientX;
+
+
+                    inicioY =
+                        event.touches[0].clientY;
+
+
+                    moviendo = true;
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+
+            track.addEventListener(
+                "touchend",
+                function(event) {
+
+                    if (!moviendo) {
+
+                        return;
+
+                    }
+
+
+                    moviendo = false;
+
+
+                    const finalX =
+                        event.changedTouches[0].clientX;
+
+
+                    const finalY =
+                        event.changedTouches[0].clientY;
+
+
+                    const diferenciaX =
+                        inicioX - finalX;
+
+
+                    const diferenciaY =
+                        inicioY - finalY;
+
+
+                    if (
+                        Math.abs(
+                            diferenciaX
+                        ) > 50 &&
+                        Math.abs(
+                            diferenciaX
+                        ) >
+                        Math.abs(
+                            diferenciaY
+                        )
+                    ) {
+
+
+                        if (
+                            diferenciaX > 0
+                        ) {
+
+                            moverCarrusel(1);
+
+                        }
+
+                        else {
+
+                            moverCarrusel(-1);
+
+                        }
+
+                    }
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+        }
+
+
+
+        crearDots();
+
+        actualizarCarrusel();
+
+
+
+        /* =================================================
+           BOTÓN ENTRAR
+        ================================================= */
+
+        const entrarBtn =
+            document.getElementById(
+                "entrarBtn"
+            );
+
+
+        const carta =
+            document.getElementById(
+                "carta"
+            );
+
+
+        if (
+            entrarBtn &&
+            carta
+        ) {
+
+
+            entrarBtn.addEventListener(
+                "click",
+                function() {
+
+                    carta.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+            );
+
+        }
+
+
+
+        /* =================================================
+           BOTONES DE SORPRESA
+        ================================================= */
+
+        const botonesSorpresa =
+            document.querySelectorAll(
+                ".surprise-button"
+            );
+
+
+        botonesSorpresa.forEach(
+            function(boton) {
+
+
+                boton.addEventListener(
+                    "click",
+                    function() {
+
+
+                        const id =
+                            boton.getAttribute(
+                                "data-mensaje"
+                            );
+
+
+                        const mensajes =
+                            document.querySelectorAll(
+                                ".surprise-message"
+                            );
+
+
+                        mensajes.forEach(
+                            function(mensaje) {
+
+                                mensaje.style.display =
+                                    "none";
+
+                            }
+                        );
+
+
+                        const seleccionado =
+                            document.getElementById(
+                                id
+                            );
+
+
+                        if (
+                            seleccionado
+                        ) {
+
+                            seleccionado.style.display =
+                                "block";
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
+</textarea>
+
+
+
+<script>
+
+/* =====================================================
+   GENERADOR
+===================================================== */
+
+const inputFotos =
+    document.getElementById(
+        "fotos"
+    );
+
+
+const contador =
+    document.getElementById(
+        "contador"
+    );
+
+
+const crearRegaloBtn =
+    document.getElementById(
+        "crearRegaloBtn"
+    );
+
+
+const mensaje =
+    document.getElementById(
+        "mensaje"
+    );
+
+
+
+/* =====================================================
+   SELECCIÓN DE FOTOS
+===================================================== */
+
+inputFotos.addEventListener(
+    "change",
+    function() {
+
+
+        const cantidad =
+            inputFotos.files.length;
+
+
+        if (
+            cantidad === 0
+        ) {
+
+            contador.textContent =
+                "No has seleccionado fotos todavía.";
+
+        }
+
+        else if (
+            cantidad === 1
+        ) {
+
+            contador.textContent =
+                "Has seleccionado 1 foto 🤍";
+
+        }
+
+        else {
+
+            contador.textContent =
+                "Has seleccionado " +
+                cantidad +
+                " fotos 🤍";
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   CONVERTIR FOTO
+===================================================== */
+
+function convertirFoto(file) {
+
+    return new Promise(
+        function(resolve, reject) {
+
+
+            const imagen =
+                new Image();
+
+
+            const urlTemporal =
+                URL.createObjectURL(
+                    file
+                );
+
+
+            imagen.onload =
+                function() {
+
+
+                    try {
+
+
+                        if (
+                            !imagen.naturalWidth ||
+                            !imagen.naturalHeight
+                        ) {
+
+
+                            URL.revokeObjectURL(
+                                urlTemporal
+                            );
+
+
+                            reject(
+                                new Error(
+                                    "La imagen no pudo ser interpretada: " +
+                                    file.name
+                                )
+                            );
+
+
+                            return;
+
+                        }
+
+
+                        const maximo =
+                            1800;
+
+
+                        let ancho =
+                            imagen.naturalWidth;
+
+
+                        let alto =
+                            imagen.naturalHeight;
+
+
+                        if (
+                            ancho > maximo ||
+                            alto > maximo
+                        ) {
+
+
+                            if (
+                                ancho > alto
+                            ) {
+
+
+                                alto =
+                                    alto *
+                                    (
+                                        maximo /
+                                        ancho
+                                    );
+
+
+                                ancho =
+                                    maximo;
+
+
+                            }
+
+                            else {
+
+
+                                ancho =
+                                    ancho *
+                                    (
+                                        maximo /
+                                        alto
+                                    );
+
+
+                                alto =
+                                    maximo;
+
+                            }
+
+                        }
+
+
+                        const canvas =
+                            document.createElement(
+                                "canvas"
+                            );
+
+
+                        canvas.width =
+                            Math.round(
+                                ancho
+                            );
+
+
+                        canvas.height =
+                            Math.round(
+                                alto
+                            );
+
+
+                        const contexto =
+                            canvas.getContext(
+                                "2d"
+                            );
+
+
+                        contexto.drawImage(
+                            imagen,
+                            0,
+                            0,
+                            canvas.width,
+                            canvas.height
+                        );
+
+
+                        const resultado =
+                            canvas.toDataURL(
+                                "image/jpeg",
+                                0.88
+                            );
+
+
+                        URL.revokeObjectURL(
+                            urlTemporal
+                        );
+
+
+                        resolve(
+                            resultado
+                        );
+
+
+                    }
+
+                    catch (error) {
+
+
+                        URL.revokeObjectURL(
+                            urlTemporal
+                        );
+
+
+                        reject(
+                            new Error(
+                                "No se pudo procesar la imagen: " +
+                                file.name
+                            )
+                        );
+
+                    }
+
+                };
+
+
+            imagen.onerror =
+                function() {
+
+
+                    URL.revokeObjectURL(
+                        urlTemporal
+                    );
+
+
+                    reject(
+                        new Error(
+                            "El navegador no puede abrir esta imagen: " +
+                            file.name
+                        )
+                    );
+
+                };
+
+
+            imagen.src =
+                urlTemporal;
+
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   GENERAR FOTOS
+===================================================== */
+
+async function generarFotos() {
+
+
+    let archivos =
+        Array.from(
+            inputFotos.files
+        );
+
+
+    archivos.sort(
+        function(a, b) {
+
+            return a.name.localeCompare(
+                b.name,
+                undefined,
+                {
+                    numeric: true,
+                    sensitivity: "base"
+                }
+            );
+
+        }
+    );
+
+
+    let fotosHTML = "";
+
+
+    const mensajes = [
+
+        "Hay momentos que capturamos en el cel. 🤍",
+
+        "Recuerdos que significan muchísimo para mí. 🫶🏻",
+
+        "Mi Max Steel, Adulto Pro Max. 🤭",
+
+        "Momentos que quiero guardar para siempre. 🤍",
+
+        "De esos recuerdos que me hacen sonreír. ✨",
+
+        "Nuestra primera temporada. 🥹🤍",
+
+        "Nuestra segunda temporada. 🫶🏻",
+
+        "Gracias por cada momento juntos. 🤍",
+
+        "Y todavía nos quedan muchísimas historias por vivir. ✨",
+
+        "Pero los completos están en nuestro corazón. 🤍"
+
+    ];
+
+
+    for (
+        let i = 0;
+        i < archivos.length;
+        i++
+    ) {
+
+
+        const archivo =
+            archivos[i];
+
+
+        try {
+
+
+            const imagen =
+                await convertirFoto(
+                    archivo
+                );
+
+
+            let texto;
+
+
+            if (
+                i < mensajes.length
+            ) {
+
+                texto =
+                    mensajes[i];
+
+            }
+
+            else {
+
+                texto =
+                    "Otro momento que quiero conservar contigo. 🤍";
+
+            }
+
+
+            fotosHTML +=
+
+                '<div class="carousel-slide">' +
+
+                    '<img ' +
+                    'src="' +
+                    imagen +
+                    '" ' +
+                    'alt="Nuestro momento ' +
+                    (i + 1) +
+                    '">' +
+
+                    '<div class="carousel-caption">' +
+                    texto +
+                    '</div>' +
+
+                '</div>';
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(
+                "Error con la foto:",
+                archivo.name,
+                error
+            );
+
+
+            fotosHTML +=
+
+                '<div class="carousel-slide">' +
+
+                    '<div style="' +
+
+                    'width:100%;' +
+                    'height:100%;' +
+                    'display:flex;' +
+                    'align-items:center;' +
+                    'justify-content:center;' +
+                    'text-align:center;' +
+                    'padding:30px;' +
+                    'color:#315b78;' +
+                    'background:#eef7fc;' +
+
+                    '">' +
+
+                        '<div>' +
+
+                            '<div style="font-size:40px;">📷</div>' +
+
+                            '<p>' +
+
+                                'No se pudo cargar esta foto.' +
+
+                                '<br><br>' +
+
+                                '<strong>' +
+
+                                archivo.name +
+
+                                '</strong>' +
+
+                            '</p>' +
+
+                        '</div>' +
+
+                    '</div>' +
+
+                '</div>';
+
+        }
+
+    }
+
+
+    return fotosHTML;
+
+}
+
+
+
+/* =====================================================
+   CREAR REGALO
+===================================================== */
+
+async function crearRegalo() {
+
+
+    if (
+        inputFotos.files.length === 0
+    ) {
+
+
+        mensaje.innerHTML =
+            "⚠️ Primero selecciona tus fotos.";
+
+
+        return;
+
+    }
+
+
+    crearRegaloBtn.disabled =
+        true;
+
+
+    crearRegaloBtn.style.opacity =
+        "0.6";
+
+
+    mensaje.innerHTML =
+
+        "⏳ Preparando " +
+
+        inputFotos.files.length +
+
+        " fotos...<br><br>" +
+
+        "Esto puede tardar unos segundos.";
+
+
+    try {
+
+
+        const plantilla =
+            document.getElementById(
+                "plantilla"
+            ).value;
+
+
+        const fotosHTML =
+            await generarFotos();
+
+
+        const regalo =
+            plantilla.replace(
+                "<!-- FOTOS_AQUI -->",
+                fotosHTML
+            );
+
+
+        const archivo =
+            new Blob(
+                [regalo],
+                {
+                    type:
+                        "text/html;charset=utf-8"
+                }
+            );
+
+
+        const url =
+            URL.createObjectURL(
+                archivo
+            );
+
+
+        const enlace =
+            document.createElement(
+                "a"
+            );
+
+
+        enlace.href =
+            url;
+
+
+        enlace.download =
+            "Regalo_Fer.html";
+
+
+        enlace.style.display =
+            "none";
+
+
+        document.body.appendChild(
+            enlace
+        );
+
+
+        enlace.click();
+
+
+        enlace.remove();
+
+
+        setTimeout(
+            function() {
+
+                URL.revokeObjectURL(
+                    url
+                );
+
+            },
+            1000
+        );
+
+
+        mensaje.innerHTML =
+
+            "💙 <strong>¡Listo!</strong><br><br>" +
+
+            inputFotos.files.length +
+
+            " fotos fueron agregadas al carrusel." +
+
+            "<br><br>" +
+
+            "Busca <strong>Regalo_Fer.html</strong> " +
+
+            "en tu carpeta de Descargas." +
+
+            "<br><br>" +
+
+            "🔐 La contraseña para abrirlo es " +
+
+            "<strong>Ferch#05</strong>." +
+
+            "<br><br>" +
+
+            "Después podremos convertirlo en un enlace " +
+
+            "para que Fer lo abra directamente desde WhatsApp. 🤍";
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            error
+        );
+
+
+        mensaje.innerHTML =
+
+            "❌ Ocurrió un problema al crear el regalo." +
+
+            "<br><br>" +
+
+            error.message;
+
+    }
+
+
+    finally {
+
+
+        crearRegaloBtn.disabled =
+            false;
+
+
+        crearRegaloBtn.style.opacity =
+            "1";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   BOTÓN CREAR REGALO
+===================================================== */
+
+crearRegaloBtn.addEventListener(
+    "click",
+    function() {
+
+        crearRegalo();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
